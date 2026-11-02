@@ -39,13 +39,11 @@
       "groupSlug": "npm-non-major"
     },
     {
-      "description": "Breaking non-major updates (0.x minors, prerelease jumps) wait for approval on the Dependency Dashboard, in their own group.",
-      "matchManagers": ["npm"],
+      "description": "One PR per week for all composer patch and minor updates.",
+      "matchManagers": ["composer"],
       "matchUpdateTypes": ["minor", "patch"],
-      "matchJsonata": ["isBreaking = true"],
-      "dependencyDashboardApproval": true,
-      "groupName": "npm breaking non-major",
-      "groupSlug": "npm-breaking-non-major"
+      "groupName": "composer non-major",
+      "groupSlug": "composer-non-major"
     },
     {
       "description": "One PR per week for GitHub Actions patch, minor and digest updates.",
@@ -55,11 +53,17 @@
       "groupSlug": "github-actions-non-major"
     },
     {
-      "description": "One PR per week for all composer patch and minor updates.",
-      "matchManagers": ["composer"],
+      "description": "Breaking non-major updates (0.x minors, prerelease jumps) in any manager wait for approval on the Dependency Dashboard, in their own group.",
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "composer non-major",
-      "groupSlug": "composer-non-major"
+      "matchJsonata": ["isBreaking = true"],
+      "dependencyDashboardApproval": true,
+      "groupName": "breaking non-major",
+      "groupSlug": "breaking-non-major"
+    },
+    {
+      "description": "Package replacements (a dependency moving to a new package name) change code, not just a version; they wait for approval on the Dependency Dashboard.",
+      "matchUpdateTypes": ["replacement"],
+      "dependencyDashboardApproval": true
     },
     {
       "description": "prisma and @prisma/* majors must move together.",
