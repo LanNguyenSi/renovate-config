@@ -16,7 +16,8 @@ Use it from a repository's `renovate.json`:
 - Runs weekly, Monday before 06:00 (Europe/Berlin).
 - Waits until a release is at least 7 days old before proposing it (`minimumReleaseAge`), so a compromised or quickly retracted release is unlikely to land.
 - Groups all npm patch and minor updates into one pull request per repository, composer patch and minor updates into another, and GitHub Actions patch, minor and digest updates into a third.
-- Breaking non-major updates (0.x minors, prerelease jumps) go into a separate group that is created only after approval on the Dependency Dashboard.
+- Breaking non-major updates (0.x minors, prerelease jumps) in any manager (npm, Docker, pip, composer) go into a separate group that is created only after approval on the Dependency Dashboard.
+- Package replacements (a dependency moving to a new package name, such as `framer-motion` to `motion`) are created only after approval on the Dependency Dashboard.
 - Raises dependency ranges in `package.json` together with the lockfile (`rangeStrategy: bump`); `engines`, Docker tags and `setup-node` keep their precision, and `engines` is never changed.
 - Never touches npm `overrides`: those are security pins maintained by the CVE sweeps.
 - Never merges on its own (`automerge: false`); every pull request goes through the repository's normal review and CI.
