@@ -16,11 +16,13 @@ Use it from a repository's `renovate.json`:
 - Runs weekly, Monday before 06:00 (Europe/Berlin).
 - Waits until a release is at least 7 days old before proposing it (`minimumReleaseAge`), so a compromised or quickly retracted release is unlikely to land.
 - Groups all npm patch and minor updates into one pull request per repository, and GitHub Actions patch, minor and digest updates into another.
-- Raises the range in `package.json` together with the lockfile (`rangeStrategy: bump`), so the declared floor matches what is installed.
+- Breaking non-major updates (0.x minors, prerelease jumps) go into a separate group that is created only after approval on the Dependency Dashboard.
+- Raises dependency ranges in `package.json` together with the lockfile (`rangeStrategy: bump`); `engines`, Docker tags and `setup-node` keep their precision, and `engines` is never changed.
 - Never merges on its own (`automerge: false`); every pull request goes through the repository's normal review and CI.
-- Major updates appear only on the Dependency Dashboard issue and are created only after approval there.
-- Never proposes a major for `@types/node` or the Node runtime (Docker `node` image, `setup-node`); those follow the planned runtime upgrades.
+- Major updates appear only on the Dependency Dashboard issue and are created only after approval there; `prisma` and `@prisma/*` majors come as one group.
+- Never proposes a major for `@types/node` or the Node runtime (Docker `node` image, `setup-node`, `.nvmrc`); those follow the planned runtime upgrades.
 - Lockfile maintenance is off.
+- Security fixes from GitHub vulnerability alerts bypass the schedule and the release-age wait and arrive as their own pull requests; they need Dependabot alerts enabled on the repository.
 
 ## Changing the preset
 
