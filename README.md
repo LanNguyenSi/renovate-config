@@ -23,6 +23,7 @@ Use it from a repository's `renovate.json`:
 - Major updates appear only on the Dependency Dashboard issue and are created only after approval there; `prisma` and `@prisma/*` majors come as one group.
 - Never proposes a major for `@types/node` or the Node runtime (Docker `node` image, `setup-node`, `.nvmrc`); those follow the planned runtime upgrades.
 - Lockfile maintenance is off.
+- Lockfile updates run with npm's default `allow-remote=all` (merged into any repository `.npmrc`); the hosted runner's stricter setting otherwise refuses tarballs of optional bundled packages such as `@tailwindcss/oxide-wasm32-wasi`.
 - Security fixes from GitHub vulnerability alerts bypass the schedule and the release-age wait and arrive as their own pull requests; they need Dependabot alerts enabled on the repository.
 
 ## Changing the preset

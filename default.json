@@ -10,6 +10,8 @@
   "prHourlyLimit": 2,
   "labels": ["dependencies"],
   "lockFileMaintenance": { "enabled": false },
+  "npmrc": "allow-remote=all",
+  "npmrcMerge": true,
   "major": { "dependencyDashboardApproval": true },
   "packageRules": [
     {
