@@ -55,6 +55,13 @@
       "groupSlug": "github-actions-non-major"
     },
     {
+      "description": "One PR per week for all composer patch and minor updates.",
+      "matchManagers": ["composer"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "composer non-major",
+      "groupSlug": "composer-non-major"
+    },
+    {
       "description": "prisma and @prisma/* majors must move together.",
       "matchPackageNames": ["prisma", "@prisma/*"],
       "matchUpdateTypes": ["major"],
@@ -73,6 +80,15 @@
       "matchDepNames": ["node"],
       "matchUpdateTypes": ["major"],
       "enabled": false
+    },
+    {
+      "description": "The Python runtime (Docker python image, setup-python) is a runtime upgrade even on a minor bump; it waits for approval on the Dependency Dashboard.",
+      "matchDatasources": ["docker", "github-releases"],
+      "matchDepNames": ["python"],
+      "matchUpdateTypes": ["minor", "major"],
+      "dependencyDashboardApproval": true,
+      "groupName": "python runtime",
+      "groupSlug": "python-runtime"
     }
   ]
 }
