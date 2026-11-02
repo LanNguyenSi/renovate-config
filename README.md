@@ -18,6 +18,7 @@ Use it from a repository's `renovate.json`:
 - Groups all npm patch and minor updates into one pull request per repository, and GitHub Actions patch, minor and digest updates into another.
 - Breaking non-major updates (0.x minors, prerelease jumps) go into a separate group that is created only after approval on the Dependency Dashboard.
 - Raises dependency ranges in `package.json` together with the lockfile (`rangeStrategy: bump`); `engines`, Docker tags and `setup-node` keep their precision, and `engines` is never changed.
+- Never touches npm `overrides`: those are security pins maintained by the CVE sweeps.
 - Never merges on its own (`automerge: false`); every pull request goes through the repository's normal review and CI.
 - Major updates appear only on the Dependency Dashboard issue and are created only after approval there; `prisma` and `@prisma/*` majors come as one group.
 - Never proposes a major for `@types/node` or the Node runtime (Docker `node` image, `setup-node`, `.nvmrc`); those follow the planned runtime upgrades.

@@ -15,8 +15,14 @@
     {
       "description": "Dependency ranges in package.json move together with the lockfile; engines, Docker tags and setup-node keep their precision.",
       "matchManagers": ["npm"],
-      "matchDepTypes": ["dependencies", "devDependencies", "optionalDependencies", "peerDependencies", "overrides"],
+      "matchDepTypes": ["dependencies", "devDependencies", "optionalDependencies", "peerDependencies"],
       "rangeStrategy": "bump"
+    },
+    {
+      "description": "npm overrides are security pins owned by the CVE sweeps; Renovate never changes them.",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["overrides"],
+      "enabled": false
     },
     {
       "description": "engines is a contract with consumers; it changes only by hand.",
