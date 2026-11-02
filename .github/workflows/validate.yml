@@ -1,0 +1,23 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Validate the preset as repository config
+        # Pinned validator version; bump deliberately.
+        run: |
+          cp default.json renovate.json
+          npx --yes --package renovate@44.167.5 -- renovate-config-validator --strict

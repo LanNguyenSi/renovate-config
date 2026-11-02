@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate preset for LanNguyenSi repos: grouped weekly patch/minor updates, no automerge, majors only through the Dependency Dashboard.",
+  "extends": ["config:recommended", ":dependencyDashboard"],
+  "timezone": "Europe/Berlin",
+  "schedule": ["* 0-5 * * 1"],
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict",
+  "rangeStrategy": "bump",
+  "automerge": false,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "labels": ["dependencies"],
+  "lockFileMaintenance": { "enabled": false },
+  "major": { "dependencyDashboardApproval": true },
+  "packageRules": [
+    {
+      "description": "One PR per week for all npm patch and minor updates.",
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "npm non-major",
+      "groupSlug": "npm-non-major"
+    },
+    {
+      "description": "One PR per week for GitHub Actions patch, minor and digest updates.",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "GitHub Actions non-major",
+      "groupSlug": "github-actions-non-major"
+    },
+    {
+      "description": "@types/node follows the production Node runtime major; it moves with the runtime waves, never on its own.",
+      "matchPackageNames": ["@types/node"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "description": "The Node runtime major (Docker base image and setup-node) moves in planned fleet waves, not through Renovate.",
+      "matchDatasources": ["docker", "node-version", "github-runners"],
+      "matchPackageNames": ["node"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
