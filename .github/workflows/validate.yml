@@ -16,8 +16,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 24
-      - name: Validate the preset as repository config
+      - name: Validate the preset
         # Pinned validator version; bump deliberately.
-        run: |
-          cp default.json renovate.json
-          npx --yes --package renovate@44.167.5 -- renovate-config-validator --strict
+        run: npx --yes --package renovate@44.167.5 -- renovate-config-validator --strict --no-global default.json
