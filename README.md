@@ -30,3 +30,7 @@ Use it from a repository's `renovate.json`:
 ## Changing the preset
 
 The `validate` workflow checks `default.json` with a pinned `renovate-config-validator` on every push and pull request. Every repository that extends the preset picks up a change on its next Renovate run.
+
+## License
+
+[MIT](LICENSE)

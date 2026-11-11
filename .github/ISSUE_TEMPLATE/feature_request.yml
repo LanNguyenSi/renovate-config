@@ -1,0 +1,17 @@
+name: Feature request
+description: Propose a rule for the preset
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: usecase
+    attributes:
+      label: Use case
+      description: Which updates should be treated differently, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed rule
+      description: The `packageRules` entry or option you have in mind.
+      render: json
