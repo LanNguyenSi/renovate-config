@@ -1,0 +1,22 @@
+name: Bug report
+description: The preset proposes, groups or holds back an update in a way the README does not describe
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Expected vs. actual behaviour, with the rule from the README you expected to apply.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The Renovate pull request, Dependency Dashboard or log of the run.
+  - type: textarea
+    id: config
+    attributes:
+      label: Repository configuration
+      description: The `renovate.json` of the repository that extends the preset.
+      render: json
